@@ -1,64 +1,64 @@
 from app import driver
+from app.helper import *
 
 
 # 其他頁籤填資料
 def fill_other_page(tender_way, file_name):
     if tender_way == 12:
         # 履約期限
-        driver.find_element_by_id('fdts').send_keys('5')
+        send_keys(by_id('fdts'), '5')
         # 是否依據採購法第11條之1，成立採購工作及審查小組
-        driver.find_element_by_xpath('//*[@id="isLaw111_radio"]/div[2]/label').click()
+        click(by_xpath('//*[@id="isLaw111_radio"]/div[2]/label'))
 
         # 本案採購契約是否採用主管機關訂定之範本 => 是
         # 本案採購契約是否採用主管機關訂定之最新版範本 => 否
-        driver.find_element_by_xpath('//*[@id="DirectForm"]/table/tbody/tr[9]/td[2]/div[1]/div[1]/label').click()
-        driver.find_element_by_xpath('//*[@id="tr_isUsePccNewSample"]/td[2]/div[2]/div[2]/label').click()
-        driver.find_element_by_id('notNewSampleReason').send_keys('測試 \n 測試 \n 測試')
+        click(by_xpath('//*[@id="DirectForm"]/table/tbody/tr[9]/td[2]/div[1]/div[1]/label'))
+        click(by_xpath('//*[@id="tr_isUsePccNewSample"]/td[2]/div[2]/div[2]/label'))
+        send_keys(by_id('notNewSampleReason'), '測試 \n 測試 \n 測試')
 
-        driver.find_element_by_xpath('//*[@id="tr_isReconstruct"]/td[2]/div[1]/div[2]/label').click()
+        click(by_xpath('//*[@id="tr_isReconstruct"]/td[2]/div[1]/div[2]/label'))
 
         # 廠商資格摘要
-        driver.find_element_by_id('isVendorDescs').click()
-        driver.find_element_by_xpath('//*[@id="venderDesc_checkbox"]/input[1]').click()
-        driver.find_element_by_xpath('//*[@id="venderDesc_checkbox"]/input[2]').click()
-        driver.find_element_by_xpath('//*[@id="isVendorDescQua"]').click()
-        driver.find_element_by_xpath('//*[@id="isVendorDescConInd_checkbox"]').click()
+        click(by_id('isVendorDescs'))
+        click(by_xpath('//*[@id="venderDesc_checkbox"]/input[1]'))
+        click(by_xpath('//*[@id="venderDesc_checkbox"]/input[2]'))
+        click(by_xpath('//*[@id="isVendorDescQua"]'))
+        click(by_xpath('//*[@id="isVendorDescConInd_checkbox"]'))
 
-        driver.find_element_by_xpath('//*[@id="vendorTax"]').click()
-        driver.find_element_by_xpath('//*[@id="vendorIndustry"]').click()
+        click(by_xpath('//*[@id="vendorTax"]'))
+        click(by_xpath('//*[@id="vendorIndustry"]'))
 
-        driver.find_element_by_xpath(
-            '//*[@id="DirectForm"]/table/tbody/tr[13]/td[2]/div[1]/table/tbody/tr[2]/td[1]/input').click()
-        driver.find_element_by_xpath(
-            '//*[@id="DirectForm"]/table/tbody/tr[13]/td[2]/div[1]/table/tbody/tr[2]/td[3]/textarea').clear()
-        driver.find_element_by_xpath(
-            '//*[@id="DirectForm"]/table/tbody/tr[13]/td[2]/div[1]/table/tbody/tr[2]/td[3]/textarea').send_keys(
-            'AAA \n AAA \n AAA')
-        driver.find_element_by_id('descn').send_keys('BBB \n BBB \n BBB')
-        driver.find_element_by_xpath('//*[@id="Next_page"]').click()
-        driver.implicitly_wait(1)
+        click(by_xpath('//*[@id="DirectForm"]/table/tbody/tr[13]/td[2]/div[1]/table/tbody/tr[2]/td[1]/input'))
+        clear(by_xpath('//*[@id="DirectForm"]/table/tbody/tr[13]/td[2]/div[1]/table/tbody/tr[2]/td[3]/textarea'))
+        send_keys(
+            by_xpath('//*[@id="DirectForm"]/table/tbody/tr[13]/td[2]/div[1]/table/tbody/tr[2]/td[3]/textarea'),
+            'AAA \n AAA \n AAA'
+        )
+        send_keys(by_id('descn'), 'BBB \n BBB \n BBB')
+        click(by_xpath('//*[@id="Next_page"]'))
+        wait(1)
 
-        # 文件上傳區塊通通跳過
+        # 文件上傳區塊
         # 廠商說明書
-        driver.find_element_by_xpath('//*[@id="VendorStatement"]/div[3]/a[2]').click()
-        driver.implicitly_wait(1)
+        click(by_xpath('//*[@id="VendorStatement"]/div[3]/a[2]'))
+        wait(1)
 
         # 標價清單
         # 預設填一項資料
-        driver.find_element_by_xpath('//*[@id="tr_iteminfo_0"]/td[1]/input[3]').send_keys('1')
-        driver.find_element_by_xpath('//*[@id="tr_iteminfo_0"]/td[2]/textarea').send_keys('123')
-        driver.find_element_by_xpath('//*[@id="tr_iteminfo_0"]/td[3]/input').send_keys('1')
-        driver.find_element_by_xpath('//*[@id="tr_iteminfo_0"]/td[4]/input').send_keys('1')
-        driver.find_element_by_xpath('//*[@id="VendorStatement"]/div[2]/a[2]').click()
-        driver.implicitly_wait(1)
+        send_keys(by_xpath('//*[@id="tr_iteminfo_0"]/td[1]/input[3]'), '1')
+        send_keys(by_xpath('//*[@id="tr_iteminfo_0"]/td[2]/textarea'), '123')
+        send_keys(by_xpath('//*[@id="tr_iteminfo_0"]/td[3]/input'), '1')
+        send_keys(by_xpath('//*[@id="tr_iteminfo_0"]/td[4]/input'), '1')
+        click(by_xpath('//*[@id="VendorStatement"]/div[2]/a[2]'))
+        wait(1)
 
         # 三用文件
-        driver.find_element_by_xpath('//*[@id="VendorStatement"]/div/a[2]').click()
-        driver.implicitly_wait(1)
+        click(by_xpath('//*[@id="VendorStatement"]/div/a[2]'))
+        wait(1)
 
         # 招標資料上傳
-        driver.find_element_by_xpath('//*[@id="Next_page"]').click()
-        driver.implicitly_wait(1)
+        click(by_xpath('//*[@id="Next_page"]'))
+        wait(1)
     elif tender_way == 1:
         # 是否依據採購法第99條
         # 否

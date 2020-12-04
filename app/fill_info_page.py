@@ -1,4 +1,5 @@
 from app import driver
+from app.helper import *
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.keys import Keys
 
@@ -6,16 +7,16 @@ from selenium.webdriver.common.keys import Keys
 # 招標頁籤填資料
 def fill_info_page(tender_way):
     if tender_way == 12:
-        driver.find_element_by_xpath('//*[@id="DirectForm"]/table/tbody/tr[9]/td[2]/div[1]/div[2]/label').click()
+        click(by_xpath('//*[@id="DirectForm"]/table/tbody/tr[9]/td[2]/div[1]/div[2]/label'))
 
         # 是否訂有底價 => 否 => 採購法第47條第1項第1款
-        driver.find_element_by_xpath('//*[@id="DirectForm"]/table/tbody/tr[9]/td[2]/div[1]/div[2]/label').click()
-        driver.find_element_by_xpath('//*[@id="div_isGovernmentEstimate"]/div[1]/label').click()
+        click(by_xpath('//*[@id="DirectForm"]/table/tbody/tr[9]/td[2]/div[1]/div[2]/label'))
+        click(by_xpath('//*[@id="div_isGovernmentEstimate"]/div[1]/label'))
 
-        driver.find_element_by_xpath('//*[@id="DirectForm"]/table/tbody/tr[18]/td[2]/div[1]/div[2]/label').click()
+        click(by_xpath('//*[@id="DirectForm"]/table/tbody/tr[18]/td[2]/div[1]/div[2]/label'))
 
         # 下一頁
-        driver.find_element_by_xpath('/html/body/div[2]/div/div[5]/div/form/div[3]/a[3]').click()
+        click(by_xpath('/html/body/div[2]/div/div[5]/div/form/div[3]/a[3]'))
     elif tender_way == 1:
         # 是否訂有底價
         # 是

@@ -5,7 +5,7 @@ from app import run_tender_way as run
 import random
 
 
-def main():
+def main(tender_way):
     url = 'http://127.0.0.1:8080/tps'
     driver.get(url)
     driver.implicitly_wait(6)
@@ -21,14 +21,14 @@ def main():
     file_name = f'test_{random_num}'
     driver.find_element_by_id('tenderCaseNo').send_keys(file_name)
 
-    # 公開取得電子報價單
-    select.select_tender_way_12()
-    run.run_tender_way_12(file_name)
-
-    # 公開招標
-    # select.select_tender_way_1()
-    # run.run_tender_way_1(file_name)
-
+    if tender_way == 12:
+        # 公開取得電子報價單
+        select.select_tender_way_12()
+        run.run_tender_way_12(file_name)
+    elif tender_way == 1:
+        # 公開招標
+        select.select_tender_way_1()
+        run.run_tender_way_1(file_name)
 
 if __name__ == '__main__':
-    main()
+    main(12)

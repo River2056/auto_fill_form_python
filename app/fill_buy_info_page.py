@@ -6,66 +6,75 @@ from selenium.webdriver.support.select import Select
 # 採購資料頁籤填資料
 def fill_buy_info_page(tender_way, file_name):
     if tender_way == 12:
-        send_keys(get_by_id('tenderName'), file_name)
-        send_keys(get_by_id('fkDmsProctrgCode'), '5111')
-        click(get_by_tag_name('body'))
-        send_keys(get_by_id('planNo'), '12345')
-        # driver.find_element_by_id('tenderName').send_keys(file_name)
-        # driver.find_element_by_id('fkDmsProctrgCode').send_keys('5111')
-        # driver.find_element_by_tag_name('body').click()
-        # driver.find_element_by_id('planNo').send_keys('12345')
+        send_keys(by_id('tenderName'), file_name)
+        send_keys(by_id('fkDmsProctrgCode'), '5111')
+        click(by_tag_name('body'))
+        send_keys(by_id('planNo'), '12345')
 
         # 本採購案是否屬於建築工程
-        click(get_by_xpath('//*[@id="IsBuild"]/td[2]/div[1]/div[1]/label'))
-        select = Select(get_by_id('fkTpamProperty'))
+        click(by_xpath('//*[@id="IsBuild"]/td[2]/div[1]/div[1]/label'))
+        select = Select(by_id('fkTpamProperty'))
         select.select_by_value('1')
-        send_keys(get_by_id('procurementAmount1'), '100000')
+        send_keys(by_id('procurementAmount1'), '100000')
         wait(2)
-        # driver.find_element_by_xpath('//*[@id="IsBuild"]/td[2]/div[1]/div[1]/label').click()
-        # select = Select(driver.find_element_by_id('fkTpamProperty'))
-        # select.select_by_value('1')
-        # driver.find_element_by_id('procurementAmount1').send_keys('100000')
-        # driver.implicitly_wait(2)
 
-        driver.find_element_by_xpath("//*[@id='DirectForm']/table/tbody/tr[10]/td[2]/div[1]/div[1]/label").click()
-        driver.find_element_by_xpath('//*[@id="tr_isSensitive"]/td[2]/div[1]/div[1]/label').click()
-        driver.find_element_by_xpath('//*[@id="tr_isAffectSec"]/td[2]/div[1]/div[1]/label').click()
-        driver.find_element_by_xpath(
-            '/html/body/div[2]/div/div[5]/div[1]/form/table/tbody/tr[15]/td[2]/div[1]/div[1]/div/div[1]/input').send_keys(
-            '100000')
-        driver.implicitly_wait(1)
-        driver.find_element_by_xpath('//*[@id="tr_budgetIsPdt"]/td[2]/div[1]/div[1]/label').click()
-        driver.find_element_by_xpath(
-            '/html/body/div[2]/div/div[5]/div[1]/form/table/tbody/tr[17]/td[2]/div[1]/div[1]/div/div[1]/input').send_keys(
-            '100000')
-        driver.implicitly_wait(1)
-        driver.find_element_by_xpath('//*[@id="tr_estimatedProcIsPdt"]/td[2]/div[1]/div[1]/label').click()
-        driver.find_element_by_xpath('//*[@id="tr_fuRite"]/td[2]/div[1]/label[2]').click()
-        driver.implicitly_wait(1)
-        driver.find_element_by_id('fuRiteComment').send_keys('abc \n def \n ghi')
-        driver.find_element_by_xpath('//*[@id="tr_isGrant"]/td[2]/div[1]/div[1]/label').click()
-        driver.implicitly_wait(1)
-        driver.find_element_by_id('input_orgId_0').send_keys('3')
-        driver.find_element_by_id('tpamOrgAidMoney_0').send_keys('500')
-        driver.find_element_by_xpath('//*[@id="tr_isExTender"]/td[2]/div[1]/div[2]/label').click()
-        # click(get_by_xpath('//*[@id="DirectForm"]/div[2]/a[2]'))
-        driver.find_element_by_xpath('/html/body/div[2]/div/div[5]/div[1]/form/div[3]/a[2]').click()
+        click(by_xpath("//*[@id='DirectForm']/table/tbody/tr[10]/td[2]/div[1]/div[1]/label"))
+        click(by_xpath('//*[@id="tr_isSensitive"]/td[2]/div[1]/div[1]/label'))
+        click(by_xpath('//*[@id="tr_isAffectSec"]/td[2]/div[1]/div[1]/label'))
+        send_keys(
+            by_xpath('/html/body/div[2]/div/div[5]/div[1]/form/table/tbody/tr[15]/td[2]/div[1]/div[1]/div/div[1]/input'),
+            '100000'
+        )
+        wait(1)
+        click(by_xpath('//*[@id="tr_budgetIsPdt"]/td[2]/div[1]/div[1]/label'))
+        send_keys(
+            by_xpath('/html/body/div[2]/div/div[5]/div[1]/form/table/tbody/tr[17]/td[2]/div[1]/div[1]/div/div[1]/input'),
+            '100000'
+        )
+        wait(1)
+        click(by_xpath('//*[@id="tr_estimatedProcIsPdt"]/td[2]/div[1]/div[1]/label'))
+        click(by_xpath('//*[@id="tr_fuRite"]/td[2]/div[1]/label[2]'))
+        wait(1)
+        send_keys(
+            by_id('fuRiteComment'),
+            'abc \n def \n ghi'
+        )
+
+        # 是否受機關補助 => 新增一筆
+        click(by_xpath('//*[@id="tr_isGrant"]/td[2]/div[1]/div[1]/label'))
+        wait(1)
+
+        send_keys(
+            by_id('input_orgId_0'),
+            '3'
+        )
+        send_keys(
+            by_id('tpamOrgAidMoney_0'),
+            '500'
+        )
+
+        # 前案採購資訊 => 否
+        click(by_xpath('//*[@id="tr_isExTender"]/td[2]/div[1]/div[2]/label'))
+
+        # 下一頁
+        click(by_xpath('/html/body/div[2]/div/div[5]/div[1]/form/div[3]/a[2]'))
+
     elif tender_way == 1:
         try:
             # 標案名稱
-            send_keys(get_by_id('tenderName'), file_name)
+            send_keys(by_id('tenderName'), file_name)
             # 標的分類
-            send_keys(get_by_id('fkDmsProctrgCode'), '5111')
-            click(get_by_tag_name('body'))
+            send_keys(by_id('fkDmsProctrgCode'), '5111')
+            click(by_tag_name('body'))
             wait(2)
 
             # 工程計畫編號
-            send_keys(get_by_id('planNo'), '12345')
+            send_keys(by_id('planNo'), '12345')
 
             # 以下根據狀況comment
             # case 1
             # 本採購案是否屬於建築工程 => 第一項
-            click(get_by_xpath('//*[@id="IsBuild"]/td[2]/div[1]/label[1]'))
+            click(by_xpath('//*[@id="IsBuild"]/td[2]/div[1]/label[1]'))
 
             # # case 2
             # # 本採購案是否屬於建築工程 => 第二項 => 輸入金額5百萬 => 是 => 否 => 是 => 是
@@ -110,12 +119,12 @@ def fill_buy_info_page(tender_way, file_name):
             # click(get_by_xpath('/html/body/div[2]/div/div[5]/div[1]/form/table/tbody/tr[5]/td[2]/div[1]/label[4]'))
 
             # 財物採購性質
-            select = Select(get_by_xpath('/html/body/div[2]/div/div[5]/div[1]/form/table/tbody/tr[7]/td[2]/div[1]/select'))
+            select = Select(by_xpath('/html/body/div[2]/div/div[5]/div[1]/form/table/tbody/tr[7]/td[2]/div[1]/select'))
             select.select_by_value('1')
 
             # 採購金額 => 輸入5億
             send_keys(
-                get_by_xpath('/html/body/div[2]/div/div[5]/div[1]/form/table/tbody/tr[8]/td[2]/div[1]/div/div/div[1]/input'),
+                by_xpath('/html/body/div[2]/div/div[5]/div[1]/form/table/tbody/tr[8]/td[2]/div[1]/div/div/div[1]/input'),
                 '500000000'
             )
 
