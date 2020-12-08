@@ -59,6 +59,134 @@ def fill_other_page(tender_way, file_name):
         # 招標資料上傳
         click(by_xpath('//*[@id="Next_page"]'))
         wait(1)
+
+    elif tender_way == 2:
+        # 是否依據採購法第99條
+        click(by_xpath('//*[@id="adaptLaw_radio"]/div/div[2]/label'))
+
+        # 履約期限
+        send_keys(
+            by_xpath('//*[@id="fdts"]'),
+            '12345'
+        )
+
+        # 是否依據採購法第11條之1，成立採購工作及審查小組
+        click(by_xpath('//*[@id="isLaw111_radio"]/div[1]/label'))
+
+        click(by_xpath('//*[@id="div_isLaw111"]/div/table/tbody/tr[1]/td[2]/label'))
+        click(by_xpath('//*[@id="span_isPoliMemAtt"]/label[1]'))
+
+        click(by_xpath('//*[@id="div_isLaw111"]/div/table/tbody/tr[3]/td[2]/label'))
+
+        click(by_xpath('//*[@id="div_isLaw111"]/div/table/tbody/tr[5]/td[2]/label'))
+        click(by_xpath('//*[@id="span_isAccMemAtt"]/label[1]'))
+
+        click(by_xpath('//*[@id="div_isLaw111"]/div/table/tbody/tr[7]/td[2]/label'))
+
+        # 本案採購契約是否採用主管機關訂定之範本
+        click(by_xpath('//*[@id="DirectForm"]/table/tbody/tr[12]/td[2]/div[1]/div[1]/label'))
+
+        # 本案採購契約是否採用主管機關訂定之最新版範本
+        click(by_xpath('//*[@id="tr_isUsePccNewSample"]/td[2]/div[2]/div[2]/label'))
+        send_keys(by_xpath('//*[@id="notNewSampleReason"]'), '測試測試\n測試測試\n測試測試\n測試測試\n測試測試')
+
+        # 採購監辦
+        # click(by_xpath('//*[@id="tr_fkPmsSupervisionType"]/td[2]/div[1]/div[1]/label'))
+
+        # 是否屬災區重建工程
+        click(by_xpath('//*[@id="tr_isReconstruct"]/td[2]/div[1]/div[2]/label'))
+
+        # 廠商資格摘要
+        # 廠商登記或設立之證明
+        click(by_xpath('//*[@id="isVendorDescs"]'))
+        click(by_xpath('//*[@id="venderDesc_checkbox"]/input[1]'))
+        click(by_xpath('//*[@id="venderDesc_checkbox"]/input[2]'))
+        click(by_xpath('//*[@id="isVendorDescQua"]'))
+
+        click(by_xpath('//*[@id="isVendorDescConInd_checkbox"]'))
+
+        click(by_xpath('//*[@id="vendorTax"]'))
+        click(by_xpath('//*[@id="vendorIndustry"]'))
+
+        # 是否訂有與履約能力有關之基本資格
+        click(by_xpath('//*[@id="DirectForm"]/table/tbody/tr[17]/td[2]/div[1]/table/tbody/tr[2]/td[1]/input'))
+        clear(by_xpath('//*[@id="DirectForm"]/table/tbody/tr[17]/td[2]/div[1]/table/tbody/tr[2]/td[3]/textarea'))
+        send_keys(
+            by_xpath('//*[@id="DirectForm"]/table/tbody/tr[17]/td[2]/div[1]/table/tbody/tr[2]/td[3]/textarea'),
+            'AAA\nAAA\nAAA'
+        )
+
+        click(by_xpath('//*[@id="DirectForm"]/table/tbody/tr[17]/td[2]/div[1]/table/tbody/tr[3]/td[1]/input'))
+        clear(by_xpath('//*[@id="DirectForm"]/table/tbody/tr[17]/td[2]/div[1]/table/tbody/tr[3]/td[3]/textarea'))
+        send_keys(
+            by_xpath('//*[@id="DirectForm"]/table/tbody/tr[17]/td[2]/div[1]/table/tbody/tr[3]/td[3]/textarea'),
+            'BBB\nBBB\nBBB'
+        )
+
+        # 附加說明(限填2000個中文字)
+        send_keys(
+            by_xpath('//*[@id="descn"]'),
+            'AAA\nBBB\nCCC\nDDD'
+        )
+
+        # 是否刊登英文公告
+        click(by_xpath('//*[@id="isEng_radio"]/div[1]/label'))
+
+        send_keys(
+            by_xpath('//*[@id="engTenderAddr"]'),
+            'somewhere street some number lane nowhere district, Taipei City'
+        )
+        send_keys(
+            by_xpath('//*[@id="engName"]'),
+            file_name
+        )
+        send_keys(
+            by_xpath('//*[@id="engContactPerson"]'),
+            'Kevin Tung'
+        )
+        # 聯絡電話(英)
+        send_keys(
+            by_xpath('//*[@id="engTelCountryCode"]'),
+            '886'
+        )
+        send_keys(
+            by_xpath('//*[@id="engTelArea"]'),
+            '02'
+        )
+        send_keys(
+            by_xpath('//*[@id="engTelNo"]'),
+            '12345678'
+        )
+        send_keys(
+            by_xpath('//*[@id="engTelExt"]'),
+            '123'
+        )
+
+        # 傳真號碼(英)
+        send_keys(by_xpath('//*[@id="engFaxCountryCode"]'), '886')
+        send_keys(by_xpath('//*[@id="engFaxArea"]'), '02')
+        send_keys(by_xpath('//*[@id="engFaxNo"]'), '12345678')
+
+        # 招標文件售價及付款方式(英)
+        send_keys(
+            by_xpath('//*[@id="engPay"]'),
+            '1.Price for selling on-site : cash only NT$*****   2.Price for selling via mail order : postal money order NT$***** , made payable to XXXXX        3.Price for acquiring electronic tender documentation on the internet (URL: web.pcc.gov.tw): electronic payment NT$***** '
+        )
+
+        # 領標地點(英)
+        send_keys(
+            by_xpath('//*[@id="engPickPlace"]'),
+            'some place in Taipei City...'
+        )
+
+        # 附加說明(英)
+        send_keys(
+            by_xpath('//*[@id="engDesc"]'),
+            'some test comment\njust some more test comment\nanother chunk of test comment'
+        )
+
+        # 下一頁
+        click(by_xpath('/html/body/div[2]/div/div[5]/div/form/div[3]/a[2]'))
     elif tender_way == 1:
         # 是否依據採購法第99條
         # 否

@@ -33,6 +33,42 @@ def fill_var_page(tender_way):
 
         # 下一頁
         click(by_xpath('/html/body/div[2]/div/div[5]/div[7]/form/div[3]/a[2]'))
+
+
+    elif tender_way == 2:
+        # 是否提供電子領標 => 招標文件售價及付款方式
+        send_keys(
+            by_xpath('/html/body/div[2]/div/div[5]/div[7]/form/table/tbody/tr[1]/td[2]/div[1]/div/div[2]/div[3]/div/div[1]/div[2]/div[2]/div[2]/input'),
+            '現金'
+        )
+
+        # 是否提供電子投標
+        click(by_xpath('/html/body/div[2]/div/div[5]/div[7]/form/table/tbody/tr[2]/td[2]/div[1]/div/div[1]/label'))
+
+        # 截止投標 => 等標天數
+        send_keys(
+            by_xpath('/html/body/div[2]/div/div[5]/div[7]/form/table/tbody/tr[3]/td[2]/div[1]/div[1]/input[2]'),
+            '7'
+        )
+        date_value = by_xpath('//*[@id="label_spdtDate"]').get_attribute('innerHTML')
+
+        # 開標時間
+        send_keys(
+            by_xpath('/html/body/div[2]/div/div[5]/div[7]/form/table/tbody/tr[4]/td[2]/div[1]/div/div[2]/div/div/input[1]'),
+            date_value
+        )
+
+        # 是否須繳納押標金
+        click(by_xpath('/html/body/div[2]/div/div[5]/div[7]/form/table/tbody/tr[6]/td[2]/div[1]/div/div[3]/label'))
+
+        # 是否須繳納押標金
+        click(by_xpath('/html/body/div[2]/div/div[5]/div[7]/form/table/tbody/tr[6]/td[2]/div[1]/div/div[3]/label'))
+
+        # 投標文字
+        click(by_xpath('/html/body/div[2]/div/div[5]/div[7]/form/table/tbody/tr[7]/td[2]/div[1]/label[1]'))
+
+        # 下一頁
+        click(by_xpath('/html/body/div[2]/div/div[5]/div[7]/form/div[3]/a[2]'))
     elif tender_way == 1:
         # 是否提供電子領標 => 預設都選是
         # 招標文件售價及付款方式

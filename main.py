@@ -11,7 +11,7 @@ def main(tender_way):
     driver.implicitly_wait(6)
 
     # 登入
-    login.login('3.13.20.2', '0', 'abc123')
+    login.login('3.13.50', '0', 'abc123')
     driver.implicitly_wait(6)
     url = 'http://127.0.0.1:8080/tps/TenderManagement/showTenderTmp'
     driver.get(url)
@@ -25,10 +25,14 @@ def main(tender_way):
         # 公開取得電子報價單
         select.select_tender_way_12()
         run.run_tender_way_12(file_name)
+    elif tender_way == 2:
+        #公開取得報價單與企劃書
+        select.select_tender_way_2()
+        run.run_tender_way_2(file_name)
     elif tender_way == 1:
         # 公開招標
         select.select_tender_way_1()
         run.run_tender_way_1(file_name)
 
 if __name__ == '__main__':
-    main(12)
+    main(1)

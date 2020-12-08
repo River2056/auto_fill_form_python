@@ -59,6 +59,129 @@ def fill_buy_info_page(tender_way, file_name):
         # 下一頁
         click(by_xpath('/html/body/div[2]/div/div[5]/div[1]/form/div[3]/a[2]'))
 
+    elif tender_way == 2:
+        # 標案名稱
+        send_keys(by_id('tenderName'), file_name)
+
+        # 標的分類
+        send_keys(by_id('fkDmsProctrgCode'), '5111')
+        click(by_tag_name('body'))
+        wait(2)
+
+        # 工程計畫編號
+        send_keys(by_id('planNo'), '12345')
+
+        # 以下根據狀況comment
+        # case 1
+        # 本採購案是否屬於建築工程 => 第一項
+        click(by_xpath('//*[@id="IsBuild"]/td[2]/div[1]/div[1]/label'))
+
+        # case 2
+        # click(by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[5]/td[2]/div[1]/div[2]/label'))
+        # # 金額500萬
+        # send_keys(
+        #     by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[5]/td[2]/div[1]/div[2]/div/table/tbody/tr[1]/td[2]/span/div/div[1]/input'),
+        #     '5000000'
+        # )
+        # # 是
+        # click(by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[5]/td[2]/div[1]/div[2]/div/table/tbody/tr[3]/td/div/div/div[1]/label'))
+        # # 否
+        # click(by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[5]/td[2]/div[1]/div[2]/div/table/tbody/tr[4]/td/div/div[2]/div[2]/label'))
+        # # 是
+        # click(by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[5]/td[2]/div[1]/div[2]/div/table/tbody/tr[5]/td/div/div[2]/div[1]/label'))
+        # # 是
+        # click(by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[5]/td[2]/div[1]/div[2]/div/table/tbody/tr[6]/td/div/div[2]/div[1]/label'))
+
+        # case 3
+        # click(by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[5]/td[2]/div[1]/div[3]/label'))
+        # # 金額500萬
+        # send_keys(
+        #     by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[5]/td[2]/div[1]/div[3]/div/table/tbody/tr[1]/td[2]/span/div/div[1]/input'),
+        #     '5000000'
+        # )
+
+        # case 4
+        # click(by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[5]/td[2]/div[1]/div[4]/label'))
+
+        # case 5
+        # click(by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[5]/td[2]/div[1]/div[5]/label'))
+
+        # 財物採購性質
+        select = Select(by_xpath('//*[@id="fkTpamProperty"]'))
+        select.select_by_value('1')
+
+        # 採購金額
+        send_keys(by_xpath(
+            '/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[8]/td[2]/div[1]/div/div/div/div[1]/input'),
+            '1000000'
+        )
+
+        # 辦理方式
+        # 自辦
+        click(by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[10]/td[2]/div[1]/div[1]/label'))
+        # 代辦
+        # click(by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[10]/td[2]/div[1]/div[2]/label'))
+        # send_keys(
+        #     by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[10]/td[2]/div[1]/div[2]/div/div[2]/div/div/div[1]/input'),
+        #     '9.99'
+        # )
+
+        # 依據法條
+        select = Select(by_xpath('//*[@id="fkTpamByLaw"]'))
+        select.select_by_value('28')
+
+        # 本採購是否屬「具敏感性或國安(含資安)疑慮之業務範疇」採購
+        click(by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[13]/td[2]/div[1]/div[1]/label'))
+
+        # 本採購是否屬「涉及國家安全」採購
+        click(by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[14]/td[2]/div[1]/div[1]/label'))
+
+        # 預算金額
+        send_keys(
+            by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[15]/td[2]/div[1]/div[1]/div/div[1]/input'),
+            '50000'
+        )
+
+        # 預算金額是否公開
+        click(by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[16]/td[2]/div[1]/div[1]/label'))
+
+        # 預計金額
+        send_keys(
+            by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[18]/td[2]/div[1]/div[1]/div/div[1]/input'),
+            '50000'
+        )
+
+        # 預計金額是否公開
+        click(by_xpath('//*[@id="tr_estimatedProcIsPdt"]/td[2]/div[1]/div[1]/label'))
+
+        # 後續擴充
+        click(by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[20]/td[2]/div[1]/label[2]'))
+        send_keys(
+            by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[20]/td[2]/div[1]/div/textarea'),
+            'AAA\nBBB\nCCC\nDDD'
+        )
+
+        # 是否受機關補助
+        # 是
+        # click(by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[21]/td[2]/div[1]/div[1]/label'))
+        # send_keys(
+        #     by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[21]/td[2]/div[1]/div[2]/table/tbody/tr[1]/td[2]/div/div/div[1]/input'),
+        #     '3'
+        # )
+        # click(by_tag_name('body'))
+        # send_keys(
+        #     by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[21]/td[2]/div[1]/div[2]/table/tbody/tr[2]/td[2]/div/div/div[1]/input'),
+        #     '500'
+        # )
+        # click(by_tag_name('body'))
+        # 否
+        click(by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[21]/td[2]/div[1]/div[3]/label'))
+
+        # 本案是否曾以不同案號辦理招標公告且已傳輸其無法決標公告，目前仍未決標
+        click(by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/table/tbody/tr[22]/td[2]/div[1]/div[2]/label'))
+
+        # 下一頁
+        click(by_xpath('/html/body/div[2]/div/div[5]/div[2]/form/div[3]/a[2]'))
     elif tender_way == 1:
         try:
             # 標案名稱
